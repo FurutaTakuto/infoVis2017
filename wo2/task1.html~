@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>wo2:Task 01</title>
+  </head>
+  <body>
+    <script>
+      // Constructor
+      Vec3 = function( x, y, z )
+      {
+      this.x = x;
+      this.y = y;
+      this.z = z;
+      }
+      
+      Vec3.pototyepe.max=function(v)
+      {
+      if(this.x>this.y)
+      {
+      max=this.x;
+      }
+      else
+      {
+      max=this.y;
+      }
+      if(this.z>max)
+      {
+      max=this.z
+      }
+      return max;
+	
+}	  
+		  var x=5;
+		  var y=4;
+		  var z=8;
+		  var v=new Vec3(x,y,z);
+		  var max;
+		  var min;
+		  var mid;
+		  
+		  </script>
+  </body>
+</html>
