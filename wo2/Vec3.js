@@ -20,7 +20,7 @@ Vec3.prototype.max=function()
     }
     if(this.z>max)
     {
-	max=this.z
+	max=this.z;
     }
     return max;
 }
@@ -38,7 +38,7 @@ Vec3.prototype.min=function()
     }
     if(min>this.z)
     {
-	min=this.z
+	min=this.z;
     }
     return min;
 }
