@@ -4,11 +4,6 @@
   </head>
   <body>
     <script>
-      var max;
-      var mid;
-      var min;
-
-      
       // Constructor
       Vec3 = function( x, y, z )
       {
@@ -19,6 +14,7 @@
       
       Vec3.pototyepe.max=function()
       {
+      var max=0;
       if(this.x>this.y)
       {
       max=this.x;
@@ -36,6 +32,7 @@
 
       Vec3.pototyepe.min=function()
       {
+      var min=0;
       if(this.x>this.y)
       {
       min=this.y;
@@ -53,6 +50,7 @@
 
       Vec3.pototyepe.mid=function()
       {
+      var mid=0;
       var sum=0;
       sum=this.x+this.y+thiz.z;
       mid=sum-this.max()-this.min();
