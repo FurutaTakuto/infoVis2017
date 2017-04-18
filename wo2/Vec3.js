@@ -54,45 +54,42 @@ Vec3.prototype.mid=function()
 
 
 
-/*Vec3.prototype.minus = function(v)
+Vec3.prototype.minus = function(v)
 
 {
 
-this.x=v.x-this.x;
-
-this.y=v.y-this.y;
-
-this.z=v.z-this.z;
+    this.x -= v.x;
+    this.y -= v.y;
+    this.z -= v.z;
 
 return this;
 
 }
 
-Vec3.prototype.CrossProduct = function(v)
+function CrossProduct(u,v)
 {
-    this.x=v.y*this.z-this.y*v.z;
-    this.y=v.z*this.x-this.z*v.x;
-    this.z=v.x*this.y-this.x*v.y;
-    return this;
+
+    var a = new Vec3(u.y*v.z-u.z*v.y, u.z*v.x-u.x*v.z, u.x*v.y-u.y*v.x)   
+    return a;
+
 }
 
-Vec3.prototype.Length=function();
+function Length(a);
 {
     var length=0;
-    length=Math.pow(this.x,2)+Math.pow(this.y,2)+Math.pow(this.z,2);
-    length=Math.pow(length,1/2);
+    length=Math.pow(a.x,2)+Math.pow(a.y,2)+Math.pow(a.z,2);
+    length=Math.sqrt(length);
     return length;
 }
 
-Vec3.prototype.AreaOFTriangle()=function(v0,v1,v2)
+function AreaOFTriangle(v0,v1,v2)
 {
-    var length=0;
-    var CP=new Vec3();
-    var Area=0;
-    v1=v1.minus(v0);
-    v2=v2.minus(v0);
-    CP=v1.CrossProduct(v2);
-    length=CP.Length();
-    Area=length/2;
+    var u=new Vec3();
+    var v=new Vec3();
+    u=v1.minus(v0); v=v2.minus(v0);
+    var a=new Vec3();
+    a=CrossProduct(u,v);
+    var length=Length(a);
+    var Area=length/2;
     return Area;
-}*/
+}
