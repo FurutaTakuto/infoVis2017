@@ -74,7 +74,7 @@ function CrossProduct(u,v)
 
 }
 
-function Length(a);
+function Length(a)
 {
     var length=0;
     length=Math.pow(a.x,2)+Math.pow(a.y,2)+Math.pow(a.z,2);
