@@ -87,7 +87,7 @@ Vec3.prototype.Length=function();
 Vec3.prototype.AreaOFTriangle()=function(v0,v1,v2)
 {
     var length=0;
-    var CP=0;
+    var CP=new Vec3();
     var Area=0;
     v1=v1.minus(v0);
     v2=v2.minus(v0);
