@@ -84,13 +84,13 @@ Vec3.prototype.Length=function();
     return length;
 }
 
-Vec3.prototype.AreaTriangle()=function(v1,v2)
+Vec3.prototype.AreaOFTriangle()=function(v0,v1,v2)
 {
     var length=0;
     var CP=0;
     var Area=0;
-    v1=v1.minus(this);
-    v2=v2.minus(this);
+    v1=v1.minus(v0);
+    v2=v2.minus(v0);
     CP=v1.CrossProduct(v2);
     length=CP.Length();
     Area=length/2;

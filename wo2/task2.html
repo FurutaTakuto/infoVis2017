@@ -1,20 +1,44 @@
 <html>
   <head>
-    <title>wo2:Task 02</title>
+    <title>W02: task2</title>
   </head>
   <body>
-
-    <input type="text"
-	   value="0"
-	   id=""
-
+    <form name="vector">
+      This page calculate the area of the triangle.<br>
+      Please input vector value.<br>
+      v0 <input type="text" name="x0" size="5"/>
+      <input type="text" name="y0" size="5"/>
+      <input type="text" name="z0" size="5"/> <br>
+      v1 <input type="text" name="x1" size="5"/>
+      <input type="text" name="y1" size="5"/>
+      <input type="text" name="z1" size="5"/> <br>
+      v2 <input type="text" name="x2" size="5"/>
+      <input type="text" name="y2" size="5"/>
+      <input type="text" name="z2" size="5"/> <br>
+      <input type="button" onclick="calculate()" value="calculate!"/>
+    </form>      
     
-    <script src="Vec3.js"></script>
+    <script src="vec3.js"></script>
     <script>
+      function calculate(){
+      var x0=eval(document.vector.x0.value);
+      var y0=eval(document.vector.y0.value);
+      var z0=eval(document.vector.z0.value);
+      var x1=eval(document.vector.x1.value);
+      var y1=eval(document.vector.y1.value);
+      var z1=eval(document.vector.z1.value);
+      var x2=eval(document.vector.x2.value);
+      var y2=eval(document.vector.y2.value);
+      var z2=eval(document.vector.z2.value);
 
-      
-      
-      
+      var v0 = new Vec3(x0,y0,z0);
+      var v1 = new Vec3(x1,y1,z1);
+      var v2 = new Vec3(x2,y2,z2);
+      console.log(v0);
+      console.log(v1);
+      console.log(v2);
+      window.alert(AreaOfTriangle(v0,v1,v2));
+      }
     </script>
   </body>
-</html>
+</html
