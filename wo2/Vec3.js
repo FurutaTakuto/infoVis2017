@@ -82,7 +82,7 @@ function Length(a)
     return length;
 }
 
-function AreaOFTriangle(v0,v1,v2)
+function AreaOfTriangle(v0,v1,v2)
 {
     var u=new Vec3();
     var v=new Vec3();
