@@ -54,7 +54,7 @@ Vec3.prototype.mid=function()
 
 
 
-Vec3.prototype.minus = function(v)
+/*Vec3.prototype.minus = function(v)
 
 {
 
@@ -95,4 +95,4 @@ Vec3.prototype.AreaOFTriangle()=function(v0,v1,v2)
     length=CP.Length();
     Area=length/2;
     return Area;
-}
+}*/
