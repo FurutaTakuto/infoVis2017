@@ -32,7 +32,7 @@ function main()
 
      var light3 = new THREE.PointLight( 0x00ff00 );
 
-    light3.position.set( 0, 0, -1 );
+    light3.position.set( 0, 0, 1 );
 
 
     scene.add( light );
