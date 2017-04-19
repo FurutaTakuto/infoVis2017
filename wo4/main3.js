@@ -22,9 +22,14 @@ function main()
     var cube = new THREE.Mesh( geometry, material );
     scene.add( cube );
 
-    var light = new THREE.PointLight( 0xffffff );
+    var light = new THREE.PointLight( 0xff0000 );
 
     light.position.set( 1, 1, 1 );
+
+    var light2 = new THREE.PointLight( 0x00ff00 );
+
+    light2.position.set( -1, -1, -1 );
+
 
     scene.add( light );
 
