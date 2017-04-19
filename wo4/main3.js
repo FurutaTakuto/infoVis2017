@@ -28,7 +28,7 @@ function main()
 
     var light2 = new THREE.PointLight( 0x00ff00 );
 
-    light2.position.set( -1, -1, -1 );
+    light2.position.set( -1, -1, 1 );
 
 
     scene.add( light );
