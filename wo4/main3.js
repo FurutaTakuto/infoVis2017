@@ -30,9 +30,9 @@ function main()
 
     light2.position.set( -1, -1, 1 );
 
-     var light2 = new THREE.PointLight( 0x00ff00 );
+     var light3 = new THREE.PointLight( 0x00ff00 );
 
-    light2.position.set( 0, 0, -1 );
+    light3.position.set( 0, 0, -1 );
 
 
     scene.add( light );
