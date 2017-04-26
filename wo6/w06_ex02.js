@@ -17,14 +17,42 @@ function main(){
     document.body.appendChild( renderer.domElement );
     
     
-
     var vertices = [
-	[-1,1,0],[-1,-1,0],[1,-1,0],[1,1,0],
-	[-1,1,2],[-1,-1,2],[1,-1,2],[1,1,2]
+
+	[-1, 1, 0], // v0
+
+	[-1,-1, 0], // v1
+	
+	[ 1,-1, 0], // v2
+	
+	[ 1, 1, 0], // v3
+	
+	[-1, 1, 2], // v4
+	
+	[-1,-1, 2], // v5
+	
+	[ 1,-1, 2], // v6
+	
+	[ 1, 1, 2], // v7
+	
+	
     ];
     
-    var faces = [ [0,2,1],[0,3,2],[4,0,1],[4,1,5],[5,1,2],[5,2,6],
-		  [6,2,3],[6,3,7],[7,3,0],[7,0,4],[4,5,6],[4,6,7]];
+    var faces = [ 
+	[0,2,1],
+	[0,3,2],
+	[4,0,1],
+	[4,1,5],
+	[5,1,2],
+	[5,2,6],
+	[6,2,3],
+	[6,3,7],
+	[7,3,0],
+	[7,0,4],
+	[4,5,6],
+	[4,6,7]
+    ];
+    
       
     var geometry =  new THREE.Geometry();
     
@@ -80,11 +108,11 @@ function main(){
 	if( intersects.length > 0)
 	{
 	    if(intersects[0].face.color.r == 1){
-		intersects[0].face.color.setRGB(0,1,0);
+		intersects[0].face.color.setRGB(1,1,0);
 		intersects[0].object.geometry.colorsNeedUpdate = true;
 	    }
 	    else{
-	    intersects[0].face.color.setRGB(1,0,0);
+	    intersects[0].face.color.setRGB(1,0,1);
 	    intersects[0].object.geometry.colorsNeedUpdate = true;
 	    }
 	}
