@@ -112,7 +112,7 @@ function main(){
 		intersects[0].object.geometry.colorsNeedUpdate = true;
 	    }
 	    else{
-	    intersects[0].face.color.setRGB(1,0,1);
+	    intersects[0].face.color.setRGB(1,0,0);
 	    intersects[0].object.geometry.colorsNeedUpdate = true;
 	    }
 	}
