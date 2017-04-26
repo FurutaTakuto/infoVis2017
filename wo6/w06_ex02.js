@@ -108,7 +108,7 @@ function main(){
 	if( intersects.length > 0)
 	{
 	    if(intersects[0].face.color.r == 1){
-		intersects[0].face.color.setRGB(1,1,0);
+		intersects[0].face.color.setRGB(0,1,0);
 		intersects[0].object.geometry.colorsNeedUpdate = true;
 	    }
 	    else{

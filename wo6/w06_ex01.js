@@ -77,11 +77,11 @@ function main()
     geometry.faces[4].color= new THREE.Color(1,0,1);
     geometry.faces[5].color= new THREE.Color(0,1,1);
     geometry.faces[6].color= new THREE.Color(1,1,1);
-    geometry.faces[7].color= new THREE.Color(1,0,0);
-    geometry.faces[8].color= new THREE.Color(0,1,0);
-    geometry.faces[9].color= new THREE.Color(0,0,1);
-    geometry.faces[10].color= new THREE.Color(1,0,1);
-    geometry.faces[11].color= new THREE.Color(1,1,0);
+    geometry.faces[7].color= new THREE.Color(0.5,0,0);
+    geometry.faces[8].color= new THREE.Color(0,0.5,0);
+    geometry.faces[9].color= new THREE.Color(0,0,0.5);
+    geometry.faces[10].color= new THREE.Color(0.5,0,0.5);
+    geometry.faces[11].color= new THREE.Color(0.5,0.5,0);
     geometry.computeFaceNormals();
     
     var cube = new THREE.Mesh( geometry, material );
