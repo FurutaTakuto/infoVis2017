@@ -8,9 +8,9 @@ function main(){
     var aspect = width / height;
     var near = 1;
     var far = 1000;
- //   var camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
- //   camera.position.set( 0, 0, 10 );
- //   scene.add( camera );
+    var camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
+    camera.position.set( 0, 0, 10 );
+    scene.add( camera );
 
     var camera2 = new THREE.PerspectiveCamera( fov, aspect, near, far );
     camera2.position.set( 0, 10,0  );
