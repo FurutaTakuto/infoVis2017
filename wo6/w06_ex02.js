@@ -127,7 +127,7 @@ function main(){
     function loop()
     {
         requestAnimationFrame( loop );
-        cube.rotation.x += 0.03;
+        cube.rotation.x += 100;
 	cube.rotation.y += 100;
         renderer.render( scene, camera );
     }
