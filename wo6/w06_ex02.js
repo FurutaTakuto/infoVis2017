@@ -102,7 +102,7 @@ function main(){
 	var x_NDC = 2*(x_win-vx)/vw-1;
 	var y_NDC = -(2*(y_win-vy)/vh-1);
 	var p_NDC = new THREE.Vector3(x_NDC,y_NDC,1);
-	var p_wld = p_NDC.unproject(camera);
+	var p_wld = p_NDC.unproject(camera2);
 	
 	var origin = camera.position;
 	var direction = p_wld.sub( camera.position ).normalize();
