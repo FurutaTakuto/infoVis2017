@@ -27,13 +27,13 @@ function main()
 	
 	[ 1, 1, 0], // v3
 	
-	[-1, 1,-2], // v4
+	[-1, 1, 2], // v4
 	
-	[-1,-1,-2], // v5
+	[-1,-1, 2], // v5
 	
-	[ 1,-1,-2], // v6
+	[ 1,-1, 2], // v6
 	
-	[ 1, 1,-2], // v7
+	[ 1, 1, 2], // v7
 	
 	
     ];
@@ -54,7 +54,7 @@ function main()
     ];
     
 
-    var geometry = new THREE.Geometry( 1, 1, 1 );
+    var geometry = new THREE.Geometry();
 
     var v0 = new THREE.Vector3().fromArray( vertices[0] );
 
@@ -71,6 +71,23 @@ function main()
     var v6 = new THREE.Vector3().fromArray( vertices[6] );
     
     var v7 = new THREE.Vector3().fromArray( vertices[7] );
+
+    geometry.vertices.push( v0 );
+
+    geometry.vertices.push( v1 );
+    
+    geometry.vertices.push( v2 );
+    
+    geometry.vertices.push( v3 );
+    
+    geometry.vertices.push( v4 );
+    
+    geometry.vertices.push( v5 );
+    
+    geometry.vertices.push( v6 );
+    
+    geometry.vertices.push( v7 );
+
 
     Var id = faces[0];
 
@@ -119,9 +136,64 @@ function main()
     Var id = faces[11];
     
     var f11 = new THREE.Face3( id[0], id[1], id[2] );
+
+    geometry.faces.push( f0 );
+
+    geometry.faces.push( f1 );
+
+    geometry.faces.push( f2 );
+    
+    geometry.faces.push( f3 );
+    
+    geometry.faces.push( f4 );
+    
+    geometry.faces.push( f5 );
+    
+    geometry.faces.push( f6 );
+    
+    geometry.faces.push( f7 );
+    
+    geometry.faces.push( f8 );
+    
+    geometry.faces.push( f9 );
+    
+    geometry.faces.push( f10 );
+    
+    geometry.faces.push( f11 );
     
     
     var material = new THREE.MeshLambertMaterial( { color: 0xffffff } );
+
+    var material = new THREE.MeshLambertMaterial();
+
+    material.vertexColors = THREE.FaceColors;
+
+    geometry.faces[0].color= new THREE.Color(1,0,0);
+
+    geometry.faces[1].color= new THREE.Color(0,1,0);
+
+    geometry.faces[2].color= new THREE.Color(0,0,1);
+
+    geometry.faces[3].color= new THREE.Color(1,1,0);
+
+    geometry.faces[4].color= new THREE.Color(1,0,1);
+
+    geometry.faces[5].color= new THREE.Color(0,1,1);
+
+    geometry.faces[6].color= new THREE.Color(1,1,1);
+
+    geometry.faces[7].color= new THREE.Color(1,0,0);
+
+    geometry.faces[8].color= new THREE.Color(0,1,0);
+
+    geometry.faces[9].color= new THREE.Color(0,0,1);
+
+    geometry.faces[10].color= new THREE.Color(1,0,1);
+
+    geometry.faces[11].color= new THREE.Color(1,1,0);
+
+    geometry.computeFaceNormals();
+    
     var cube = new THREE.Mesh( geometry, material );
     scene.add( cube );
 
