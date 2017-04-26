@@ -12,6 +12,10 @@ function main(){
     camera.position.set( 0, 0, 10 );
     scene.add( camera );
 
+    var camera2 = new THREE.PerspectiveCamera( fov, aspect, near, far );
+    camera2.position.set( 0, 10,0  );
+    scene.add( camera2 );
+
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize( width, height );
     document.body.appendChild( renderer.domElement );
