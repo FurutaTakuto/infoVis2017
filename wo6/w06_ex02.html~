@@ -4,7 +4,7 @@
   </head>
   <body>
     <script src="three.min.js"></script>
-    <script src="w06_ex02.js"></script>
+    <script src="w06_task2.js"></script>
     <script>
       main();
     </script>
