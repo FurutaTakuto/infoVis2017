@@ -10,7 +10,7 @@ function main()
     var near = 1;
     var far = 1000;
     var camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
-    camera.position.set( 0, 0, 1 );
+    camera.position.set( 0, 0, 10 );
     scene.add( camera );
 
     var renderer = new THREE.WebGLRenderer();
