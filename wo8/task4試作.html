@@ -1,0 +1,220 @@
+<!-- 参考URL--> 
+<!--https://spphire9.wordpress.com/2013/03/13/webglでcook-torrance/-->
+	
+<html>
+    <head>
+	<title>W08: task4</title>
+    </head>
+    <body>
+      <script src="three.min.js"></script>
+
+      <script type="x-shader/x-vertex" id="gouraud.vert">
+
+
+	<!------変数宣言----------------------------------------->
+	varying vec3 point_color;
+	varying vec4 point_position;
+	varying vec3 normal_vector; <!--vNormal-->
+	uniform vec3 light_position;
+	<!--vLightDirection = light_psition - point_position--> 
+	uniform vec3 camera_position;
+	<!--vView = camera_position - point_position -->
+
+	uniform vec4 diffuse;  <!-- 拡散反射係数 -->
+	uniform vec4 specular; <!-- 鏡面反射係数 -->
+	uniform vec4 ambient;  <!-- 環境光 -->
+	uniform float microfacet; <!--  面の粗さ -->
+	<!------/変数宣言----------------------------------------->
+	
+	<!-- 代入 -->
+
+	diffuse = (0.3,0.3,0.3,0.3);
+	specular = (0.5,0.5,0.5,0.5);
+	ambient = (0.8,0.8,0.8,0.8);
+	microfacet = 0.2;
+	
+	<!-- /代入 -->
+	
+	
+	
+	<!--  Beckman分布 -->
+	float BechmannDistribution(float d, float m) {
+	float d2 = d * d;
+	float m2 = m * m;
+	return exp((d2 - 1.0) / (d2 * m2)) / (m2 * d2 * d2);
+	}
+	
+	<!--  フレネル項 -->
+	float Fresnel(float c, float f0) {
+	float sf = sqrt(f0);
+	float n = (1.0 + sf) / (1.0 - sf);
+	float g = sqrt(n * n + c * c - 1.0);
+	float ga = (c * (g + c) - 1.0) * (c * (g + c) - 1.0);
+	float gb = (c * (g - c) + 1.0) * (c * (g - c) + 1.0);
+	return (g - c) * (g - c) / (2.0 * (g + c) + (g + c)) * (1.0 + ga / gb);
+	}
+
+
+	<!-- Cook-Torrance -->
+	vec3 Cook-Torrance(vec3 C,vec3 L,vec3 N, vec3 V)
+	{
+	vec3 H = normalize(L+V);<!-- h -->
+	
+	float hn = dot(H, N);
+	float ln = dot(L, N);
+	float lh = dot(L, H);
+	float vn = dot(V, N);
+
+	vec3 f = vec3(Fresnel(lh, specular.x), Fresnel(lh, specular.y), Fresnel(lh, specular.z));
+	float d = BechmannDistribution(hn, microfacet);
+	float t = 2.0 * hn / dot(v, h);
+	float g = min(1.0, min(t * vn, t * ln));
+	float m = 3.14159265 * vn * ln;
+	vec3 spe = max(f * d * g / m, 0.0);<!-- ds  -->
+	vec3 dif = max(ln, 0.0) * diffuse.xyz;<!-- dd -->
+	vec3 amb = ambient.xyz;<!-- ka -->
+		  
+	return C*(spe + dif + amb);
+	}
+
+	
+	void main()
+	{
+	point_position = modelViewMatrix * vec4(position, 1.0);
+	normal_vector = normalMatrix * normal;
+	
+	vec3 C = color;
+	vec3 L = normalize( light_position - point_position.xyz);<!-- l -->
+	vec3 N = normalize( normal_vector); <!-- n -->
+	vec3 V = normalize(camera_position-point_position.xyz);<!-- v -->
+
+	point_color = Cook-Torrance(C,L,N,V);
+	gl_Position = projectionMatrix * point_position;
+	}
+      </script>
+
+      <script type="x-shader/x-fragment" id="gouraud.frag">
+	varying vec3 point_color;
+	
+	void main(){
+	gl_FragColor = vec4(point_color,1.0);
+	}
+      </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+      
+      <script type="x-shader/x-vertex" id="phong.vert">
+	varying vec3 point_color;
+	varying vec4 point_position;
+	varying vec3 normal_vector;
+
+			 
+	void main()
+	{
+	point_color = color;
+	point_position = modelViewMatrix * vec4(position, 1.0);
+	normal_vector = normalMatrix * normal;	 
+
+
+	gl_Position = projectionMatrix * point_position;
+	}
+      </script>
+      
+      <script type="x-shader/x-fragment" id="phong.frag">
+
+	varying vec3 point_color;
+	varying vec4 point_position;
+	varying vec3 normal_vector;
+	uniform vec3 light_position;
+	uniform vec3 camera_position;
+
+	uniform vec4 diffuse;  <!-- 拡散反射係数 -->
+	uniform vec4 specular; <!-- 鏡面反射係数 -->
+	uniform vec4 ambient;  <!-- 環境光 -->
+	uniform float microfacet; <!--  面の粗さ -->
+
+	
+	<!--  Beckman分布 -->
+	float BechmannDistribution(float d, float m) {
+	float d2 = d * d;
+	float m2 = m * m;
+	return exp((d2 - 1.0) / (d2 * m2)) / (m2 * d2 * d2);
+	}
+ 
+	<!--  フレネル項 -->
+	float Fresnel(float c, float f0) {
+	float sf = sqrt(f0);
+	float n = (1.0 + sf) / (1.0 - sf);
+	float g = sqrt(n * n + c * c - 1.0);
+	float ga = (c * (g + c) - 1.0) * (c * (g + c) - 1.0);
+	float gb = (c * (g - c) + 1.0) * (c * (g - c) + 1.0);
+	return (g - c) * (g - c) / (2.0 * (g + c) + (g + c)) * (1.0 + ga / gb);
+	}
+
+
+	<!-- Cook-Torrance -->
+	vec3 Cook-Torrance(vec3 C,vec3 L,vec3 N, vec3 V)
+	{
+	
+	
+	vec3 H = normalize(L+V);<!-- h -->
+	
+	float hn = dot(H, N);
+	float ln = dot(L, N);
+	float lh = dot(L, H);
+	float vn = dot(V, N);
+
+	vec3 f = vec3(Fresnel(lh, specular.x), Fresnel(lh, specular.y), Fresnel(lh, specular.z));
+	float d = BechmannDistribution(hn, microfacet);
+	float t = 2.0 * hn / dot(v, h);
+	float g = min(1.0, min(t * vn, t * ln));
+	float m = 3.14159265 * vn * ln;
+	vec3 spe = max(f * d * g / m, 0.0); <!-- ds -->
+	vec3 dif = max(ln, 0.0) * diffuse.xyz;<!-- dd -->
+	vec3 amb = ambient.xyz;<!-- ka -->
+		  
+	return C*(spe + dif + amb);
+	}
+
+	void main(){
+	vec3 C = point_color;
+	vec3 L = normalize( light_position - point_position.xyz);
+	vec3 N = normalize( normal_vector);
+	vec3 V = normalize( camera_position - point_position.xyz );
+	
+	vec3 shaded_color = Cook-Torrance(C,L,N,V);
+		  
+	gl_FragColor = vec4(shaded_color,1.0);
+	}
+      </script>
+      
+      <script src="w08_task4.js"></script>
+      <script>
+	main();
+      </script>
+    </body>
+</html>
