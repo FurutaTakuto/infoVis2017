@@ -73,7 +73,7 @@
 	vec3 N = normalize( normal_vector);
 	vec3 V = normalize(camera_position-point_position.xyz);
 
-	point_color = BlinnPhongReflection(C,L,N,V);
+	point_color = CookTorranceReflection(C,L,N,V);
 	gl_Position = projectionMatrix * point_position;
 	}
       </script>
@@ -167,7 +167,7 @@
 	vec3 N = normalize( normal_vector);
 	vec3 V = normalize( camera_position - point_position.xyz );
 	
-	vec3 shaded_color = BlinnPhongReflection(C,L,N,V);
+	vec3 shaded_color = CookTorranceReflection(C,L,N,V);
 		  
 	gl_FragColor = vec4(shaded_color,1.0);
 	}
