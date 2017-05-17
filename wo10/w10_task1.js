@@ -91,17 +91,17 @@ function main()
 	var Sf=Math.floor(S);
 	var Sc=Sf+1;;
 	var len=cmap.length;
-	if(len-1<Sc){
-	    C= new THREE.Color().setHex(Sf);
-	}
-	else{
-	    var Cf = new THREE.Color().setHex( cmap[ Sf ][1] );
-	    var Cc = new THREE.Color().setHex( cmap[ Sc ][1] );
-	    R=lerp(Sf,Cf.r,Sc,Cc.r,S);
-	    G=lerp(Sf,Cf.g,Sc,Cc.g,S);
-	    B=lerp(Sf,Cf.b,Sc,Cc.b,S);
-	    var C =  new THREE.Color( R, G, B );
-	}
+//	if(len-1<Sc){
+//	    C= new THREE.Color().setHex(Sf);
+//	}
+//	else{
+	var Cf = new THREE.Color().setHex( cmap[ Sf ][1] );
+	var Cc = new THREE.Color().setHex( cmap[ Sc ][1] );
+	R=lerp(Sf,Cf.r,Sc,Cc.r,S);
+	G=lerp(Sf,Cf.g,Sc,Cc.g,S);
+	B=lerp(Sf,Cf.b,Sc,Cc.b,S);
+	var C =  new THREE.Color( R, G, B );
+//	}
 	return C;
     }
     
@@ -114,12 +114,10 @@ function main()
         var id = faces[i];
         var S0 = (scalars[ id[0] ]-0.1)*n;
 	var S1 = (scalars[ id[1] ]-0.1)*n;
-	var S2 = (scalars[ id[2] ]-0.1)*n;
 	C0 = LI(S0);
 	C1 = LI(S1);
-	C2 = LI(S2);
-	//var S2 = Math.round((scalars[ id[2] ]-0.1)*n);
-	//var C2 = new THREE.Color().setHex( cmap[ S2 ][1] );
+	var S2 = Math.round((scalars[ id[2] ]-0.1)*n);
+	var C2 = new THREE.Color().setHex( cmap[ S2 ][1] );
 	geometry.faces[i].vertexColors.push( C0 );
 	geometry.faces[i].vertexColors.push( C1 );
 	geometry.faces[i].vertexColors.push( C2 );
