@@ -37,7 +37,7 @@ function main()
         255  // S2
     ];
 
-    // Create color map
+   // Create color map
     var cmap = [];
     for ( var i = 0; i < 256; i++ )
     {
