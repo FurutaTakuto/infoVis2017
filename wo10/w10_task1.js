@@ -90,7 +90,7 @@ function main()
 	var R,G,B;
 	var Sf=Math.floor(S);
 	var Sc=Sf+1;;
-	var len=camp.length;
+	var len=cmap.length;
 	if(len-1<Sc){
 	    C= new TREE.color().setHex(Sf);
 	}
