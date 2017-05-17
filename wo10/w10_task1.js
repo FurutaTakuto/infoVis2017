@@ -86,9 +86,9 @@ function main()
     {
 	var n = 255/0.7;
         var id = faces[i];
-        var S0 = Math.round((scalars[ id[0] ]-0.1)*n);
-        var S1 = Math.round((scalars[ id[1] ]-0.1)*n);
-        var S2 = Math.round((scalars[ id[2] ]-0.1)*n);
+        var S0 = Math.floor((scalars[ id[0] ]-0.1)*n);
+        var S1 = Math.floor((scalars[ id[1] ]-0.1)*n);
+        var S2 = Math.floor((scalars[ id[2] ]-0.1)*n);
         var C0 = new THREE.Color().setHex( cmap[ S0 ][1] );
         var C1 = new THREE.Color().setHex( cmap[ S1 ][1] );
         var C2 = new THREE.Color().setHex( cmap[ S2 ][1] );
