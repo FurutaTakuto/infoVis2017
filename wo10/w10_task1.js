@@ -92,12 +92,12 @@ function main()
 	var S1  = scalars[ (id[1]-0.1)/0.7*255];
 	var S2  = scalars[ (id[2]-0.1)/0.7*255];
 	//c:x0,f:x1
-	var S0c = MATH.ceil(scalars[ (id[0]-0.1)/0.7*255]);
-	var S0f = MATH.floor(scalars[ (id[0]-0.1)/0.7*255]);
-	var S1c = MATH.ceil(scalars[ (id[1]-0.1)/0.7*255]);
-	var S1f = MATH.floor(scalars[ (id[1]-0.1)/0.7*255]);
-	var S2c = MATH.ceil(scalars[ (id[2]-0.1)/0.7*255]);
-	var S2f = MATH.floor(scalars[ (id[2]-0.1)/0.7*255]);
+	var S0c = Math.ceil(scalars[ (id[0]-0.1)/0.7*255]);
+	var S0f = Math.floor(scalars[ (id[0]-0.1)/0.7*255]);
+	var S1c = Math.ceil(scalars[ (id[1]-0.1)/0.7*255]);
+	var S1f = Math.floor(scalars[ (id[1]-0.1)/0.7*255]);
+	var S2c = Math.ceil(scalars[ (id[2]-0.1)/0.7*255]);
+	var S2f = Math.floor(scalars[ (id[2]-0.1)/0.7*255]);
 	//c:y0,f:y1
         var C0c = new THREE.Color().setHex( cmap[ S0c ][1] );
         var C1c = new THREE.Color().setHex( cmap[ S1c ][1] );
