@@ -53,7 +53,7 @@ function main()
     var lut = new THREE.Lut( 'rainbow', cmap.length );
     lut.addColorMap( 'mycolormap', cmap );
     lut.changeColorMap( 'mycolormap' );
-    scene.add( lut.setLegendOn {
+    scene.add( lut.setLegendOn( {
         'layout':'horizontal',
         'position': { 'x': 0.6, 'y': -1.1, 'z': 2 },
         'dimensions': { 'width': 0.15, 'height': 1.2 }

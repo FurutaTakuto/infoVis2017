@@ -1,1 +1,0 @@
-furutatakuto@ip241-124.wlan.kobe-u.ac.jp.81421
