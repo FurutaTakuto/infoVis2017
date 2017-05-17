@@ -80,26 +80,47 @@ function main()
         geometry.faces.push( face );
     }
 
+    //linier interporation
+    function lerp(x0,y0,x1,y1,x){
+	return y0+(y1-y0)*(x-x0)/(x1-x0);
+    }
+
+    function LI(S)
+    {
+	var R,G,B;
+	var Sf=Math.floor(S);
+	var Sc=Sf+1;
+	var Cf = new THREE.Color().setHex( cmap[ Sf ][1] );
+	var Cc = new THREE.Color().setHex( cmap[ Sc ][1] );
+	R=lerp(Sf,Cf.r,Sc,Cc.r,S);
+	G=lerp(Sf,Cf.g,Sc,Cc.g,S);
+	B=lerp(Sf,Cf.b,Sc,Cc.b,S);
+	var C =  new THREE.Color( R, G, B );
+	return C;
+    }
+    
     // Assign colors for each vertex
     material.vertexColors = THREE.VertexColors;
     for ( var i = 0; i < nfaces; i++ )
     {
+	var C0,C1,C2;
 	var n = 255/0.7;
         var id = faces[i];
-        var S0 = Math.floor((scalars[ id[0] ]-0.1)*n);
-        var S1 = Math.floor((scalars[ id[1] ]-0.1)*n);
-        var S2 = Math.floor((scalars[ id[2] ]-0.1)*n);
-        var C0 = new THREE.Color().setHex( cmap[ S0 ][1] );
-        var C1 = new THREE.Color().setHex( cmap[ S1 ][1] );
-        var C2 = new THREE.Color().setHex( cmap[ S2 ][1] );
-        geometry.faces[i].vertexColors.push( C0 );
-        geometry.faces[i].vertexColors.push( C1 );
-        geometry.faces[i].vertexColors.push( C2 );
+        var S0 = (scalars[ id[0] ]-0.1)*n;
+	var S1 = (scalars[ id[1] ]-0.1)*n;
+	var S2 = (scalars[ id[2] ]-0.1)*n;
+	C0 = LI(S0);
+	C1 = LI(S1);
+	C2 = LI(S2);
+	
+	geometry.faces[i].vertexColors.push( C0 );
+	geometry.faces[i].vertexColors.push( C1 );
+	geometry.faces[i].vertexColors.push( C2 );
     }
-
+    
     var triangle = new THREE.Mesh( geometry, material );
     scene.add( triangle );
-
+    
     loop();
 
     function loop()
