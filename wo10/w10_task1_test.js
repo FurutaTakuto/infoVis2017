@@ -37,7 +37,7 @@ function main()
         255  // S2
     ];
 
-    // Create color map
+   // Create color map
     var cmap = [];
     for ( var i = 0; i < 256; i++ )
     {
@@ -77,25 +77,52 @@ function main()
         geometry.faces.push( face );
     }
 
+  function lerp(x0,y0,x1,y1,x){
+	return y0+(y1-y0)*(x-x0)/(x1-x0);
+    }
+ 
     // Assign colors for each vertex
     material.vertexColors = THREE.VertexColors;
     for ( var i = 0; i < nfaces; i++ )
     {
         var id = faces[i];
-        var S0 = Math.ceil(scalars[ (id[0]-0.1)/0.7*255 ]);
-        var S1 = Math.ceil(scalars[ (id[1]-0.1)/0.7*255 ]);
-        var S2 = Math.ceil(scalars[ (id[2]-0.1)/0.7*255 ]);
-        var C0 = new THREE.Color().setHex( cmap[ S0 ][1] );
-        var C1 = new THREE.Color().setHex( cmap[ S1 ][1] );
-        var C2 = new THREE.Color().setHex( cmap[ S2 ][1] );
+	//各頂点の色のスカラー値
+	//x
+	var S0  = scalars[ (id[0]-0.1)/0.7*255];
+	var S1  = scalars[ (id[1]-0.1)/0.7*255];
+	var S2  = scalars[ (id[2]-0.1)/0.7*255];
+	//c:x0,f:x1
+	var S0c = Math.ceil(S0);
+	var S0f = S0c+1;
+	var S1c = Math.ceil(S1);
+	var S1f = S1c+1;
+	var S2c = Math.ceil(S2);
+	var S2f = S2c+1;
+	//c:y0,f:y1
+	var C0c = new THREE.Color().setHex( cmap[ S0c ][1] );
+        var C1c = new THREE.Color().setHex( cmap[ S1c ][1] );
+        var C2c = new THREE.Color().setHex( cmap[ S2c ][1] );
+	var C0f = new THREE.Color().setHex( cmap[ S0f ][1] );
+        var C1f = new THREE.Color().setHex( cmap[ S1f ][1] );
+        var C2f = new THREE.Color().setHex( cmap[ S2f ][1] );
+	
+	//function lerp(x0,y0,x1,y1,x){
+	//	return y0+(y1-y0)*(x-x0)/(x1-x0);
+	//    }
+	
+	//y
+	var C0 = new THREE.Color().setHex(lerp(S0c,C0c,S0f,C0f,S0));
+	var C1 = new THREE.Color().setHex(lerp(S1c,C1c,S1f,C1f,S1));
+	var C2 = new THREE.Color().setHex(lerp(S2c,C2c,S2f,C2f,S2));
+	
         geometry.faces[i].vertexColors.push( C0 );
         geometry.faces[i].vertexColors.push( C1 );
         geometry.faces[i].vertexColors.push( C2 );
     }
-
+    
     var triangle = new THREE.Mesh( geometry, material );
     scene.add( triangle );
-
+    
     loop();
 
     function loop()
