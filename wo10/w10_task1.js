@@ -99,7 +99,7 @@ function main()
 	var S2c = Math.ceil(scalars[ (id[2]-0.1)/0.7*255]);
 	var S2f = Math.floor(scalars[ (id[2]-0.1)/0.7*255]);
 	//c:y0,f:y1
-        //var C0c = new THREE.Color().setHex( cmap[ S0c ][1] );
+        var C0c = new THREE.Color().setHex( cmap[ S0c ][1] );
         var C1c = new THREE.Color().setHex( cmap[ S1c ][1] );
         var C2c = new THREE.Color().setHex( cmap[ S2c ][1] );
 	var C0f = new THREE.Color().setHex( cmap[ S0f ][1] );
