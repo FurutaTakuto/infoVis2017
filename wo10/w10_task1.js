@@ -92,7 +92,7 @@ function main()
 	var Sc=Sf+1;;
 	var len=cmap.length;
 	if(len-1<Sc){
-	    C= new THREE.color().setHex(Sf);
+	    C= new THREE.Color().setHex(Sf);
 	}
 	else{
 	    var Cf = new THREE.Color().setHex( cmap[ Sf ][1] );
