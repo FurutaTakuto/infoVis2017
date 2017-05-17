@@ -41,10 +41,10 @@ function main()
     var cmap = [];
     for ( var i = 0; i < 256; i++ )
     {
-        var S = (i / 255.0)*0.7+0.1; // [0.1,0.8]
-        var R = Math.max( Math.cos( ( S - 0.8 ) * Math.PI ), 0.0 );
-        var G = Math.max( Math.cos( ( S - 0.45 ) * Math.PI ), 0.0 );
-        var B = Math.max( Math.cos( (S-0.1) * Math.PI ), 0.0 );
+        var S = (i / 255.0)*0.7+0.1; // [0,1]
+        var R = Math.max( Math.cos( ( S - 1 ) * Math.PI ), 0.0 );
+        var G = Math.max( Math.cos( ( S - 0.5 ) * Math.PI ), 0.0 );
+        var B = Math.max( Math.cos( S * Math.PI ), 0.0 );
         var color = new THREE.Color( R, G, B );
         cmap.push( [ S, '0x' + color.getHexString() ] );
     }
@@ -77,17 +77,44 @@ function main()
         geometry.faces.push( face );
     }
 
+    function lerp(x0,y0,x1,y1,x){
+	return y0+(y1-y0)*(x-x0)/(x1-x0);
+    }
+ 
     // Assign colors for each vertex
     material.vertexColors = THREE.VertexColors;
     for ( var i = 0; i < nfaces; i++ )
     {
         var id = faces[i];
-        var S0 = scalars[ id[0] ];
-        var S1 = scalars[ id[1] ];
-        var S2 = scalars[ id[2] ];
-        var C0 = new THREE.Color().setHex( cmap[ S0 ][1] );
-        var C1 = new THREE.Color().setHex( cmap[ S1 ][1] );
-        var C2 = new THREE.Color().setHex( cmap[ S2 ][1] );
+	//各頂点の色のスカラー値
+	//x
+	var S0  = scalars[ (id[0]-0.1)/0.7*255];
+	var S1  = scalars[ (id[1]-0.1)/0.7*255];
+	var S2  = scalars[ (id[2]-0.1)/0.7*255];
+	//c:x0,f:x1
+	var S0c = MATH.ceil(scalars[ (id[0]-0.1)/0.7*255]);
+	var S0f = MATH.floor(scalars[ (id[0]-0.1)/0.7*255]);
+	var S1c = MATH.ceil(scalars[ (id[1]-0.1)/0.7*255]);
+	var S1f = MATH.floor(scalars[ (id[1]-0.1)/0.7*255]);
+	var S2c = MATH.ceil(scalars[ (id[2]-0.1)/0.7*255]);
+	var S2f = MATH.floor(scalars[ (id[2]-0.1)/0.7*255]);
+	//c:y0,f:y1
+        var C0c = new THREE.Color().setHex( cmap[ S0c ][1] );
+        var C1c = new THREE.Color().setHex( cmap[ S1c ][1] );
+        var C2c = new THREE.Color().setHex( cmap[ S2c ][1] );
+	var C0f = new THREE.Color().setHex( cmap[ S0f ][1] );
+        var C1f = new THREE.Color().setHex( cmap[ S1f ][1] );
+        var C2f = new THREE.Color().setHex( cmap[ S2f ][1] );
+
+	//function lerp(x0,y0,x1,y1,x){
+	//	return y0+(y1-y0)*(x-x0)/(x1-x0);
+	//    }
+	
+	//y
+	var C0 = lerp(S0c,C0c,S0f,C0f,S0);
+	var C1 = lerp(S1c,C1c,S1f,C1f,S1);
+	var C2 = lerp(S2c,C2c,S2f,C2f,S2);
+	
         geometry.faces[i].vertexColors.push( C0 );
         geometry.faces[i].vertexColors.push( C1 );
         geometry.faces[i].vertexColors.push( C2 );
