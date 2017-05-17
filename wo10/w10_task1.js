@@ -111,9 +111,9 @@ function main()
 	//    }
 	
 	//y
-	var C0 = lerp(S0c,C0c,S0f,C0f,S0);
-	var C1 = lerp(S1c,C1c,S1f,C1f,S1);
-	var C2 = lerp(S2c,C2c,S2f,C2f,S2);
+	var C0 = new THREE.Color().setHex(lerp(S0c,C0c,S0f,C0f,S0));
+	var C1 = new THREE.Color().setHex(lerp(S1c,C1c,S1f,C1f,S1));
+	var C2 = new THREE.Color().setHex(lerp(S2c,C2c,S2f,C2f,S2));
 	
         geometry.faces[i].vertexColors.push( C0 );
         geometry.faces[i].vertexColors.push( C1 );
