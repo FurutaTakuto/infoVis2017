@@ -30,7 +30,7 @@ function main()
 
     var faces = [
         [ 0, 1, 2 ], // f0
-	[ 0, 2, 3 ]
+	[ 0, 2, 3 ]  // f1
     ];
 
     var scalars = [
@@ -101,12 +101,11 @@ function main()
 	var idx = Normalize(S,Smin,Smax)*(len-1);
 	var idx0=Math.floor(idx);
 	var idx1=Math.min(idx0+1,len-1);
-	var t=idx-idx1;
+	var t=idx-idx0;
 	
 	var R,G,B;
-	var Sf=Math.floor(S);
-	var Sc=Sf+1;;
-	var len=cmap.length;
+	var Sf=idx0;
+	var Sc=idx1;
 	var Cf = new THREE.Color().setHex( cmap[ idx0 ][1] );
 	var Cc = new THREE.Color().setHex( cmap[ idx1 ][1] );
 	R=lerp(Sf,Cf.r,Sc,Cc.r,S);
