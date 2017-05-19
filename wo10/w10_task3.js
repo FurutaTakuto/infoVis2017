@@ -88,23 +88,31 @@ function main()
 	return y0+(y1-y0)*(x-x0)/(x1-x0);
     }
 
-    function LI(S)
+    var Smax=Math.max.apply(null,scalars);
+    var Smin=Math.min.apply(null,scalars);
+
+    function Nomalize(S,Smax,Smin){
+	return (S-Smin)/(Smax-Smin);
+    }
+
+    function LI(S,cmap)
     {
+	var len = cmap.length;
+	var idx = Normalize(S,Smin,Smax)*(len-1);
+	var idx0=Math.floor(idx);
+	var idx1=Math.min(idx0+1,len-1);
+	var t=idx-idx1;
+	
 	var R,G,B;
 	var Sf=Math.floor(S);
 	var Sc=Sf+1;;
 	var len=cmap.length;
-//	if(len-1<Sc){
-//	    C= new THREE.Color().setHex(Sf);
-//	}
-//	else{
 	var Cf = new THREE.Color().setHex( cmap[ Sf ][1] );
 	var Cc = new THREE.Color().setHex( cmap[ Sc ][1] );
 	R=lerp(Sf,Cf.r,Sc,Cc.r,S);
 	G=lerp(Sf,Cf.g,Sc,Cc.g,S);
 	B=lerp(Sf,Cf.b,Sc,Cc.b,S);
 	var C =  new THREE.Color( R, G, B );
-//	}
 	return C;
     }
     
@@ -117,10 +125,10 @@ function main()
         var id = faces[i];
         var S0 = (scalars[ id[0] ]-0.1)*n;
 	var S1 = (scalars[ id[1] ]-0.1)*n;
-	C0 = LI(S0);
-	C1 = LI(S1);
-	var S2 = Math.round((scalars[ id[2] ]-0.1)*n);
-	var C2 = new THREE.Color().setHex( cmap[ S2 ][1] );
+	var S2 = (scalars[ id[2] ]-0.1)*n;
+	C0 = LI(S0,cmap);
+	C1 = LI(S1,cmap);
+	C2 = LI(S2,cmap);
 	geometry.faces[i].vertexColors.push( C0 );
 	geometry.faces[i].vertexColors.push( C1 );
 	geometry.faces[i].vertexColors.push( C2 );
