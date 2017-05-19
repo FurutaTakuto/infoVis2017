@@ -107,8 +107,8 @@ function main()
 	var Sf=Math.floor(S);
 	var Sc=Sf+1;;
 	var len=cmap.length;
-	var Cf = new THREE.Color().setHex( cmap[ Sf ][1] );
-	var Cc = new THREE.Color().setHex( cmap[ Sc ][1] );
+	var Cf = new THREE.Color().setHex( cmap[ idx0 ][1] );
+	var Cc = new THREE.Color().setHex( cmap[ idx1 ][1] );
 	R=lerp(Sf,Cf.r,Sc,Cc.r,S);
 	G=lerp(Sf,Cf.g,Sc,Cc.g,S);
 	B=lerp(Sf,Cf.b,Sc,Cc.b,S);
@@ -120,12 +120,11 @@ function main()
     material.vertexColors = THREE.VertexColors;
     for ( var i = 0; i < nfaces; i++ )
     {
-	var C0,C1;
-	var n = 255/0.7;
+	var C0,C1,C2;
         var id = faces[i];
-        var S0 = (scalars[ id[0] ]-0.1)*n;
-	var S1 = (scalars[ id[1] ]-0.1)*n;
-	var S2 = (scalars[ id[2] ]-0.1)*n;
+        var S0 = scalars[ id[0] ];
+	var S1 = scalars[ id[1] ];
+	var S2 = scalars[ id[2] ];
 	C0 = LI(S0,cmap);
 	C1 = LI(S1,cmap);
 	C2 = LI(S2,cmap);
