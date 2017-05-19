@@ -44,10 +44,10 @@ function main()
     for ( var i = 0; i < 256 ; i++ )
     {	
         var S = i/255.0; // [0,1]
-        var R = Math.max( Math.cos( ( S - 1.0 ) * Math.PI ), 0.0 );
+        //var R = Math.max( Math.cos( ( S - 1.0 ) * Math.PI ), 0.0 );
         //var G = Math.cos( S * Math.PI/2);
-        //var B = 1 - Math.sin( S * Math.PI/2);
-        var color = new THREE.Color( 1, 1, 1);
+        var B = 1 - Math.sin( S * Math.PI/2);
+        var color = new THREE.Color( 1, 1, B);
 
         cmap.push( [ S, '0x' + color.getHexString() ] );
     }
