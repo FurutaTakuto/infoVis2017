@@ -91,7 +91,7 @@ function main()
     var Smax=Math.max.apply(null,scalars);
     var Smin=Math.min.apply(null,scalars);
 
-    function Nomalize(S,Smax,Smin){
+    function Normalize(S,Smax,Smin){
 	return (S-Smin)/(Smax-Smin);
     }
 
