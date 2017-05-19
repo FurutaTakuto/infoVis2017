@@ -46,8 +46,12 @@ function main()
         var S = i/255.0; // [0,1]
         //var R = Math.max( Math.cos( ( S - 1.0 ) * Math.PI ), 0.0 );
         //var G = Math.cos( S * Math.PI/2);
-        var B = 1 - Math.sin( S * Math.PI/2);
-        var color = new THREE.Color( 1, 1, B);
+        //var B = 1 - Math.sin( S * Math.PI/2);
+        //var color = new THREE.Color( 1, G, B);
+
+	var L = 1 - Math.sin( S * Math.PI/2);
+	var color = new THREE.Color();
+	color.setHSL(1,1,L);
 
         cmap.push( [ S, '0x' + color.getHexString() ] );
     }
