@@ -102,7 +102,7 @@ function main()
     function LI(S,cmap)
     {
 	var len = cmap.length;
-	var idx = Normalize(S,Smin,Smax)*(len-1);
+	var idx = Normalize(S,Smax,Smin)*(len-1);
 	var idx0=Math.floor(idx);
 	var idx1=Math.min(idx0+1,len-1);
 	var t = idx - idx0;
