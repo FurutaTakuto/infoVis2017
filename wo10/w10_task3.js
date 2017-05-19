@@ -101,8 +101,6 @@ function main()
 	var idx = Normalize(S,Smin,Smax)*(len-1);
 	var idx0=Math.floor(idx);
 	var idx1=Math.min(idx0+1,len-1);
-	var t=idx-idx0;
-	
 	var R,G,B;
 	var Sf=idx0;
 	var Sc=idx1;
