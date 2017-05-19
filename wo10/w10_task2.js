@@ -49,7 +49,7 @@ function main()
         //var B = 1 - Math.sin( S * Math.PI/2);
         //var color = new THREE.Color( 1, G, B);
 
-	var L = 1 - Math.sin( S * Math.PI/2);
+	var L = 1 - Math.sin( S * Math.PI/4);
 	var color = new THREE.Color();
 	color.setHSL(1,1,L);
 
