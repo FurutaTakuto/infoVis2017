@@ -84,8 +84,12 @@ function main()
     }
 
     //linier interporation
-    function lerp(x0,y0,x1,y1,x){
-	return y0+(y1-y0)*(x-x0)/(x1-x0);
+    //function lerp(x0,y0,x1,y1,x){
+    //return y0+(y1-y0)*(x-x0)/(x1-x0);
+    //}
+
+    function interpolate(Cf,Cc,t){
+	return (1-t)*Cf+t*Cf;
     }
 
     var Smax=Math.max.apply(null,scalars);
@@ -101,14 +105,18 @@ function main()
 	var idx = Normalize(S,Smin,Smax)*(len-1);
 	var idx0=Math.floor(idx);
 	var idx1=Math.min(idx0+1,len-1);
+	var t = idx - idx0;
 	var R,G,B;
-	var Sf=idx0;
-	var Sc=idx1;
+	//var Sf=idx0;
+	//var Sc=idx1;
 	var Cf = new THREE.Color().setHex( cmap[ idx0 ][1] );
 	var Cc = new THREE.Color().setHex( cmap[ idx1 ][1] );
-	R=lerp(Sf,Cf.r,Sc,Cc.r,S);
-	G=lerp(Sf,Cf.g,Sc,Cc.g,S);
-	B=lerp(Sf,Cf.b,Sc,Cc.b,S);
+	//R=lerp(Sf,Cf.r,Sc,Cc.r,S);
+	//G=lerp(Sf,Cf.g,Sc,Cc.g,S);
+	//B=lerp(Sf,Cf.b,Sc,Cc.b,S);
+	R=interpolate(Cf.r,Cc.r,t);
+	G=interpolate(Cf.g,Cc.g,t);
+	B=interpolate(Cf.b,Cc.b,t);	
 	var C =  new THREE.Color( R, G, B );
 	return C;
     }
