@@ -16,6 +16,7 @@ function Isosurfaces( volume, isovalue )
         {
             for ( var x = 0; x < volume.resolution.x - 1; x++ )
             {
+		
                 var indices = cell_node_indices( cell_index++ );
                 var index = table_index( indices );
                 if ( index == 0 ) { continue; }
@@ -62,8 +63,27 @@ function Isosurfaces( volume, isovalue )
 
     geometry.computeVertexNormals();
 
-    material.color = new THREE.Color( "white" );
+    //task1
+    //<<<<<<<<<< add >>>>>>>>>>>>>
+    var cmap = [];
 
+    
+    for ( var i = 0; i < 256 ; i++ )
+    {	
+        var S = i/255.0; // [0,1]
+        var R = Math.max( Math.cos( ( S - 1.0 ) * Math.PI ), 0.0 );
+        var G = Math.max( Math.cos( ( S - 0.5 ) * Math.PI ), 0.0 );
+        var B = Math.max( Math.cos( S * Math.PI ), 0.0 );
+        var color = new THREE.Color( R, G, B );
+
+        cmap.push( [ S, '0x' + color.getHexString() ] );
+    }
+    
+    
+    material.color = new THREE.Color( "white" );
+     //<<<<<<<<<< /add >>>>>>>>>>>>>
+
+    
     return new THREE.Mesh( geometry, material );
 
 
