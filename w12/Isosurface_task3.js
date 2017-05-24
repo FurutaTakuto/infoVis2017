@@ -9,6 +9,15 @@ function Isosurfaces( volume, isovalue )
     //Threshold
     isovalue = KVS.Clamp( isovalue, smin, smax );
 
+    var material = new THREE.ShaderMaterial({
+	vertexColors: THREE.VertexColors,
+	vertexShader: document.getElementById('lambertian.vert').text,
+	fragmentShader: document.getElementById('lambertian.frag').text,
+	uniforms:{
+	    light_position: { type : 'v3', value: screen.light.position },
+	    m_color: { type : 'v3', value: materialColor}
+	}});
+    
     var lut = new KVS.MarchingCubesTable();
     var cell_index = 0;
     var counter = 0;
