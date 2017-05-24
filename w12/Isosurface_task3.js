@@ -151,7 +151,7 @@ function Isosurfaces( volume, isovalue )
 	var t = (s-s0)/(s1-s0);
 	//harf
         //return new THREE.Vector3().addVectors( v0, v1 ).divideScalar( 2 );
-	return new THREE.Vector3().addVectors(v0.multipryScalar(1-t),v1.multipryScalar(t));
+	return new THREE.Vector3().addVectors(v0.multiplyScalar(1-t),v1.multiplyScalar(t));
 	
     }
 }
