@@ -6,14 +6,14 @@ function main()
     screen.init( volume, {
         width: window.innerWidth,
         height: window.innerHeight,
-        enableAutoResize: false
+        enableAutoResize: false	
     });
-
+  
     var bounds = Bounds( volume );
     screen.scene.add( bounds );
-
+        
     var isovalue = 128;
-    var surfaces = Isosurfaces( volume, isovalue );
+    var surfaces = Isosurfaces( volume, isovalue, screen);
     screen.scene.add( surfaces );
 
     document.addEventListener( 'mousemove', function() {
