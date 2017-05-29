@@ -1,0 +1,59 @@
+<html>
+    <head>
+	<title>W12: task3</title>
+    </head>
+    <body style="margin:0">
+	<script src="three.min.js"></script>
+	<script src="Lut.js"></script>
+	<script src="TrackballControls.js"></script>
+	<script src="KVS.min.js"></script>
+	<script src="KVS2THREE.min.js"></script>
+	<script src="KVSLobsterData.js"></script>
+	
+	<script type="x-shader/x-vertex" id="lambertian.vert">
+	  varying vec3 point_color;
+	  varying vec4 point_position;
+	  varying vec3 normal_vector;
+	  uniform vec3 light_position;
+	  uniform vec3 m_color;
+	  
+	  vec3 LambertianReflection(vec3 C,vec3 L,vec3 N)
+	  {
+	  float ka = 0.4;
+	  float kd = 0.6;
+	  
+	  float dd = max( dot(N,L),0.0);
+	  float Ia = ka;
+	  float Id = kd*dd;
+	  return C*(Ia+Id);
+	  }
+	  
+	  void main()
+	  {
+	  point_position = modelViewMatrix * vec4(position, 1.0);
+	  normal_vector = normalMatrix * normal;
+	  
+	  vec3 C = m_color;
+	  vec3 L = normalize( light_position - point_position.xyz);
+	  vec3 N = normalize( normal_vector);
+	  point_color = LambertianReflection(C,L,N);
+	  gl_Position = projectionMatrix * point_position;
+	  }
+	</script>
+	
+	<script type="x-shader/x-fragment" id="lambertian.frag">
+	  varying vec3 point_color;
+	
+	  void main(){
+	  gl_FragColor = vec4(point_color,1.0);
+	  }
+	</script>
+	
+	<script src="Bounds.js"></script>
+	<script src="Isosurface_task3.js"></script>
+	<script src="w12_task3.js"></script>
+	<script>
+	  main();
+	</script>
+    </body>
+</html>
