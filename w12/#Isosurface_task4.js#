@@ -3,9 +3,6 @@ function Isosurfaces( volume, isovalue )
     var geometry = new THREE.Geometry();
     var material = new THREE.MeshLambertMaterial();
 
-    var smin = volume.min_value;
-    var smax = volume.max_value;
-
     var coef = new KVS.Vec4();
 
     setPlane();
@@ -17,6 +14,8 @@ function Isosurfaces( volume, isovalue )
     var cell_index = 0;
     var counter = 0;
 
+    var smin = volume.min_value;
+    var smax = volume.max_value;
     
     for ( var z = 0; z < volume.resolution.z - 1; z++ )
     {
