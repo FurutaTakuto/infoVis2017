@@ -1,0 +1,1 @@
+furutatakuto@ip248-99.wlan.kobe-u.ac.jp.94723
