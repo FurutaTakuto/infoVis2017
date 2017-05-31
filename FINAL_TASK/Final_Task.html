@@ -15,7 +15,7 @@
     
     z<br><input type="range" min="0" max="1" step="0.01" value="0.5" id="isovalue"/><br>
     
-    <button id="change-isovalue-button" style="font-family=Arial;">
+    <button id="change-isovalue-button" style="font-family=Arial;" onclick="substitution()">
       
       Apply</button>
 
@@ -30,7 +30,8 @@
      <script src="Lut.js"></script>
      <script src="SlicePlane.js"></script>	
      <script src="three.min.js"></script>
-     <script src="TrackballControls.js"></script>	
+     <script src="TrackballControls.js"></script>
+     
      <script>
        function substitution(){
        var x=eval(document. vector.x.value);
@@ -57,7 +58,7 @@
       <script src="TrackballControls.js"></script>	
       <script>
 	
-	main();
+	main(normal);
 	
       </script>
     </body>
