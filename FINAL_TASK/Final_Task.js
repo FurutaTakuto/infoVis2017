@@ -15,7 +15,7 @@ function main()
 
    // var isovalue = 128;
     var point = new THREE.Vector3(60,60,17);
-    var normal = new THREE.Vector3(0,0,1);
+    var normal = new THREE.Vector3(0,1,1);
     var surfaces = SlicePlane( volume, point, normal );
     screen.scene.add( surfaces );
 
