@@ -3,6 +3,8 @@
     <title>FINAL_TASK: Final_Task</title>
   </head>
 
+   var normal = new THREE.Vector3();
+
    <div id="controller" style="width:20%; float:left;">
 
     <label id="label" style="font-family:Arial;"></label>
@@ -38,7 +40,7 @@
        var y=eval(document. vector.y.value);
        var z=eval(document. vector.z.value);
        
-       var normal = new THREE.Vector3(x,y,z);
+       normal = THREE.Vector3(x,y,z);
        }
      </script>
        
