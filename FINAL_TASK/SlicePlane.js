@@ -148,9 +148,9 @@ function SlicePlane( object, point, normal )
         var s1 = plane_function( v1.x, v1.y, v1.z );
         var a = Math.abs( s0 / ( s1 - s0 ) );
 
-        var x = KVS.Mix( v0.x, v1.x, a );
-        var y = KVS.Mix( v0.y, v1.y, a );
-        var z = KVS.Mix( v0.z, v1.z, a );
+        var x = v0.x*(1-a)+v1.x*a;
+        var y = v0.y*(1-a)+v1.y*a;
+        var z = v0.z*(1-a)+v1.z*a;
 
         return [ x, y, z ];
     }
@@ -161,8 +161,8 @@ function SlicePlane( object, point, normal )
                 var s1 = plane_function( v1.x, v1.y, v1.z );
         var a = Math.abs( s0 / ( s1 - s0 ) );
 	
-        var line_size = object.numberOfNodesPerLine();
-        var slice_size = object.numberOfNodesPerSlice();
+        var line_size =  object.resolution.x;
+        var slice_size = object.resolution.x * object.resolution.y;
         var id0 = Math.floor( v0.x + v0.y * line_size + v0.z * slice_size );
         var id1 = Math.floor( v1.x + v1.y * line_size + v1.z * slice_size );
 	
