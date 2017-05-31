@@ -108,21 +108,22 @@ function SlicePlane( object, point, normal )
 
         return index;
     }
-    /*
+    
     function interpolated_vertex( v0, v1, s )
     {
-	var lines = object.resolution.x;
-        var slices = object.resolution.x * object.resolution.y;
-	var id_v0 = v0.x + lines * v0.y +  slices * v0.z;
-	var id_v1 = v1.x + lines * v1.y +  slices * v1.z;
-	var s0 = object.values[ id_v0 ][0];
-	var s1 = object.values[ id_v1 ][0];
-	var t = (s - s0)/(s1 - s0);
-        return new THREE.Vector3().lerpVectors( v0, v1, t );
+	var s0 = plane_function( v0.x, v0.y, v0.z );
+        var s1 = plane_function( v1.x, v1.y, v1.z );
+	var a = Math.abs( s0 / ( s1 - s0 ) );
+	var x = v0.x*(1-a)+v1.x*a;
+        var y = v0.y*(1-a)+v1.y*a;
+        var z = v0.z*(1-a)+v1.z*a;
+	var v= new THREE.Vector3(x,y,z);
+	return v;
+	
     }
-*/
 
- /*   function interpolated_value( v0, v1 )
+
+    function interpolated_value( v0, v1 )
     {
         var s0 = plane_function( v0.x, v0.y, v0.z );
         var s1 = plane_function( v1.x, v1.y, v1.z );
@@ -140,9 +141,9 @@ function SlicePlane( object, point, normal )
             return Math.floor( v.x + v.y * line_size + v.z * slice_size );
         }
     }
- */
+ 
 
-     function interpolated_vertex( v0, v1 )
+ /*    function interpolated_vertex( v0, v1 )
     {
         var s0 = plane_function( v0.x, v0.y, v0.z );
         var s1 = plane_function( v1.x, v1.y, v1.z );
@@ -168,6 +169,7 @@ function SlicePlane( object, point, normal )
 	
         return KVS.Mix( object.values[id0][0], object.values[id1][0], a );
     }
+*/
     
     function plane_function( x, y, z )
     {
