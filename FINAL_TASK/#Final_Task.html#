@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <title>FINAL_TASK: Final_Task</title>
+  </head>
+
+   <div id="controller" style="width:20%; float:left;">
+
+    <label id="label" style="font-family:Arial;"></label>
+
+    <form name="vector">
+    
+    x<br><input type="range" min="0" max="1" step="0.01" value="0.5" id="isovalue"/><br>
+    
+    y<br><input type="range" min="0" max="1" step="0.01" value="0.5" id="isovalue"/><br>
+    
+    z<br><input type="range" min="0" max="1" step="0.01" value="0.5" id="isovalue"/><br>
+    
+    <button id="change-isovalue-button" style="font-family=Arial;" onclick="substitution()">
+      
+      Apply</button>
+
+    </form>
+
+    
+     <script src="Bounds.js"></script>
+     <script src="Final_Task.js"></script>
+     <script src="KVS.min.js"></script>
+     <script src="KVS2THREE.min.js"></script>
+     <script src="KVSLobsterData.js"></script>
+     <script src="Lut.js"></script>
+     <script src="SlicePlane.js"></script>	
+     <script src="three.min.js"></script>
+     <script src="TrackballControls.js"></script>
+     
+     <script>
+       function substitution(){
+       var x=eval(document. vector.x.value);
+       var y=eval(document. vector.y.value);
+       var z=eval(document. vector.z.value);
+       
+       var normal = new THREE.Vector3(x,y,z);
+       }
+     </script>
+       
+       
+  </div>
+  
+  <div id="display" style="width: 80%; float: left;">
+    <body style="margin:0">
+      <script src="Bounds.js"></script>
+      <script src="Final_Task.js"></script>
+      <script src="KVS.min.js"></script>
+      <script src="KVS2THREE.min.js"></script>
+      <script src="KVSLobsterData.js"></script>
+      <script src="Lut.js"></script>
+      <script src="SlicePlane.js"></script>	
+      <script src="three.min.js"></script>
+      <script src="TrackballControls.js"></script>	
+      <script>
+	
+	main();
+	
+      </script>
+    </body>
+  </div>
+  
+</html>
