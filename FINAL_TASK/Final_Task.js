@@ -1,4 +1,4 @@
-function main(normal)
+function main(x,y,z)
 {
     var volume = new KVS.LobsterData();
     var screen = new KVS.THREEScreen();
@@ -15,7 +15,7 @@ function main(normal)
 
    // var isovalue = 128;
     var point = new THREE.Vector3(60,60,17);
-    var normal = new THREE.Vector3(0,0,1);
+    var normal = new THREE.Vector3(x,y,z);
     var surfaces = SlicePlane( volume, point, normal );
     screen.scene.add( surfaces );
 
