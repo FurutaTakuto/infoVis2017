@@ -122,7 +122,6 @@ function SlicePlane( object, point, normal )
 	
     }
 
-
     function interpolated_value( v0, v1 )
     {
         var s0 = plane_function( v0.x, v0.y, v0.z );
@@ -141,35 +140,6 @@ function SlicePlane( object, point, normal )
             return Math.floor( v.x + v.y * line_size + v.z * slice_size );
         }
     }
- 
-
- /*    function interpolated_vertex( v0, v1 )
-    {
-        var s0 = plane_function( v0.x, v0.y, v0.z );
-        var s1 = plane_function( v1.x, v1.y, v1.z );
-        var a = Math.abs( s0 / ( s1 - s0 ) );
-
-        var x = v0.x*(1-a)+v1.x*a;
-        var y = v0.y*(1-a)+v1.y*a;
-        var z = v0.z*(1-a)+v1.z*a;
-
-        return [ x, y, z ];
-    }
-    
-    function interpolated_value( v0, v1 )
-    {
-        var s0 = plane_function( v0.x, v0.y, v0.z );
-                var s1 = plane_function( v1.x, v1.y, v1.z );
-        var a = Math.abs( s0 / ( s1 - s0 ) );
-	
-        var line_size =  object.resolution.x;
-        var slice_size = object.resolution.x * object.resolution.y;
-        var id0 = Math.floor( v0.x + v0.y * line_size + v0.z * slice_size );
-        var id1 = Math.floor( v1.x + v1.y * line_size + v1.z * slice_size );
-	
-        return KVS.Mix( object.values[id0][0], object.values[id1][0], a );
-    }
-*/
     
     function plane_function( x, y, z )
     {
